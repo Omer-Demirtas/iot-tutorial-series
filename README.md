@@ -2,7 +2,7 @@
 
 # Contents 
 
-* NodeMCU samples
+* NodeMCU
     * GET Request
     * POST Request
     * HTTP server basic example with STA mode 
