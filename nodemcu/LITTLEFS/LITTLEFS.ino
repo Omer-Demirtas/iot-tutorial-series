@@ -2,7 +2,7 @@
 
 void readFile()
 {
-  File file = LittleFS.open("/config.txt", "r");
+  File file = LittleFS.open("/config1.txt", "r");
   if(!file){
     Serial.println("Failed to open file for reading");
   }
@@ -18,19 +18,36 @@ void readFile()
   }
 }
 
+void updateFile()
+{
+  File f = LittleFS.open("/config1.txt", "a");
+  if(!f){
+    Serial.println("Failed to open file for reading");
+  }
+  else
+  {
+    if(f.println("APPENDED FILE LINE")){
+      Serial.println("File content was appended");
+    } else {
+      Serial.println("File append failed");
+    }
+  }
+}
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Hellow World"); 
   
   if(!LittleFS.begin()){
     Serial.println("An Error has occurred while mounting LittleFS");
     return;
   }
 
+  
 }
  
 void loop() {
+  Serial.println("-------------------------------");
   readFile();
   delay(5000);
+  updateFile();
 }
