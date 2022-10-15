@@ -1,8 +1,10 @@
 #include "LittleFS.h";
 
-void readFile()
+void dataCome(String d) { Serial.println(d);}
+
+void readFile(void (*dc)(String))
 {
-  File file = LittleFS.open("/config1.txt", "r");
+  File file = LittleFS.open("/config.txt", "r");
   if(!file){
     Serial.println("Failed to open file for reading");
   }
@@ -13,6 +15,7 @@ void readFile()
       data += file.readString();
     }
     
+    dc(data);
     Serial.println(data);
     file.close();
   }
@@ -20,7 +23,7 @@ void readFile()
 
 void updateFile()
 {
-  File f = LittleFS.open("/config1.txt", "a");
+  File f = LittleFS.open("/config.txt", "a");
   if(!f){
     Serial.println("Failed to open file for reading");
   }
@@ -47,7 +50,6 @@ void setup() {
  
 void loop() {
   Serial.println("-------------------------------");
-  readFile();
+  readFile(dataCome);
   delay(5000);
-  updateFile();
 }

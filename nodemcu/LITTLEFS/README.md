@@ -33,6 +33,6 @@ w ```writing mode```
 
 w+ ```update mode, all previous data is erased```
 
-a ```append mode```
+a ```append mode | updete mode | create file if not exist``` 
 
 a+ ```append update mode, previous data is preserved, writing is only ```
