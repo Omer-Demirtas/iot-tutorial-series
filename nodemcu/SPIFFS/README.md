@@ -17,6 +17,12 @@ This method mounts file system
 ### LittleFS.open(path, mode)
 
 Opens a file
+
+### Read | Write| append
+
+```read()``` method return asclil value line by line  
+```readString()``` method return string value line by line  
+
 mode should be one of them “r”, “w”, “a”, “r+”, “w+”, “a+”
 
 r ```reading mode```
