@@ -4,13 +4,13 @@
 class Logger
 {
   private:
-    int logType;
+    int logType = 0;
   
   public:
-    Logger(int logType);
+    Logger(int type);
     void log(char* log);
 
-    void setLogType(int logType);
+    void setLogType(int type);
     int getLogType() { return logType; }
 };
 

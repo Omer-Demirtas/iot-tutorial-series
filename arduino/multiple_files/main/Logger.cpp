@@ -1,12 +1,16 @@
-#include "Logger.h"
+#include "Logger.h";
+#include "Arduino.h";
 
 // constructor
-Logger::Logger(int logType)
+Logger::Logger(int type)
 {
-  setLogType(logType);
+  Serial.print("type : ");
+  Serial.print(type);
+  Serial.println();
+  setLogType(type);
 }
 
-void Logger::setLogType(int _logType)
+void Logger::setLogType(int type)
 {
-    logType = _logType;
+  logType = type;
 }
