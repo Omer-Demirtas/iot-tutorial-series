@@ -1,4 +1,7 @@
 #include "LittleFS.h";
+#include "FileService.h";
+
+FileService service = FileService();
 
 void dataCome(String d) { Serial.println(d);}
 
@@ -44,8 +47,6 @@ void setup() {
     Serial.println("An Error has occurred while mounting LittleFS");
     return;
   }
-
-  
 }
  
 void loop() {
