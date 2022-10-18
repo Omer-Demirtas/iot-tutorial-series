@@ -1,7 +1,4 @@
 #include "LittleFS.h";
-#include "FileService.h";
-#include <string>
-FileService service = FileService();
 
 void dataCome(String d) { Serial.println(d);}
 String configDecode(String conf) { return "asd"; }
