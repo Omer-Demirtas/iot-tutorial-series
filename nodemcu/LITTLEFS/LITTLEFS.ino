@@ -1,9 +1,36 @@
 #include "LittleFS.h";
 #include "FileService.h";
-
+#include <string>
 FileService service = FileService();
 
 void dataCome(String d) { Serial.println(d);}
+String configDecode(String conf) { return "asd"; }
+
+String reaLineByLine(String (*dc)(String))
+{
+  File file = LittleFS.open("/config.txt", "r");
+  if(!file){
+    Serial.println("Failed to open file for reading");
+  }
+  else
+  {
+    String result = "";
+    while(file.available()){
+      String s = file.readString();
+      int index = s.indexOf(":");
+      String key = s.substring(0, index);
+      String value = s.substring(index + 1, s.length());  
+      //String value = s.substring(0, s.find(delimiter));
+      Serial.println(s);
+      Serial.println(key);
+      Serial.println(value);
+      Serial.println("******");
+    }
+    file.close();
+    return result;
+  }
+  return "";
+}
 
 void readFile(void (*dc)(String))
 {
@@ -51,6 +78,6 @@ void setup() {
  
 void loop() {
   Serial.println("-------------------------------");
-  readFile(dataCome);
-  delay(5000);
+  String a = reaLineByLine(configDecode);
+  delay(10000);
 }
