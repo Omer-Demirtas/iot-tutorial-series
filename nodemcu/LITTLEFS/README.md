@@ -18,10 +18,11 @@ This method mounts file system
 
 Opens a file
 
-### Read | Write| append
+### Read file
 
 ```read()``` method return asclil value line by line  
 ```readString()``` method return string value line by line  
+```readStringUntil(seperator)``` method return string value line by line  
 
 mode should be one of them “r”, “w”, “a”, “r+”, “w+”, “a+”
 

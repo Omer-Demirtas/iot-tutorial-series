@@ -1,9 +1,45 @@
 #include "LittleFS.h";
 
+typedef struct {
+  String key;
+  String value;
+} Data;
+
+
 void dataCome(String d) { Serial.println(d);}
 String configDecode(String conf) { return "asd"; }
 
-String reaLineByLine(String (*dc)(String))
+
+Data[] readLineByLine()
+{
+  Data conf = Data[10];
+
+  File file = LittleFS.open("/config.txt", "r");
+  if(!file){
+    Serial.println("Failed to open file for reading");
+  }
+  else
+  {
+    String result = "";
+    while(file.available()){
+      String s = file.readStringUntil('\n');
+      int index = s.indexOf(":");
+      String key = s.substring(0, index);
+      String value = s.substring(index + 1, s.length()); 
+      conf[(key, value); 
+      //String value = s.substring(0, s.find(delimiter));
+      Serial.println(s);
+      Serial.println(key);
+      Serial.println(value);
+      Serial.println("******");
+    }
+    file.close();
+    return conf;
+  }
+  return conf;
+}
+
+String readLineByLine(String (*dc)(String))
 {
   File file = LittleFS.open("/config.txt", "r");
   if(!file){
@@ -13,7 +49,7 @@ String reaLineByLine(String (*dc)(String))
   {
     String result = "";
     while(file.available()){
-      String s = file.readString();
+      String s = file.readStringUntil('\n');
       int index = s.indexOf(":");
       String key = s.substring(0, index);
       String value = s.substring(index + 1, s.length());  
@@ -39,11 +75,18 @@ void readFile(void (*dc)(String))
   {
     String data = "";
     while(file.available()){
-      data += file.readString();
+      Serial.println(file.readStringUntil('\n'));
+      Serial.println("****");
+
     }
+    /*
+    while(file.available()){
+      Serial.println(file.readString());
+      Serial.println("****");
+    }
+    */
     
-    dc(data);
-    Serial.println(data);
+    //dc(data);
     file.close();
   }
 }
@@ -75,6 +118,10 @@ void setup() {
  
 void loop() {
   Serial.println("-------------------------------");
-  String a = reaLineByLine(configDecode);
+  //String a = reaLineByLine(configDecode);
+  Dictionary d = readLineByLine();
+  
+  Serial.println(d["wifiName"]);
+
   delay(10000);
 }
