@@ -1,4 +1,7 @@
 #include "LittleFS.h";
+#include "Map.h";
+
+Map m = Map();
 
 typedef struct {
   String key;
@@ -10,9 +13,9 @@ void dataCome(String d) { Serial.println(d);}
 String configDecode(String conf) { return "asd"; }
 
 
-Data[] readLineByLine()
+String readLineByLine()
 {
-  Data conf = Data[10];
+  String conf = "";
 
   File file = LittleFS.open("/config.txt", "r");
   if(!file){
@@ -26,7 +29,6 @@ Data[] readLineByLine()
       int index = s.indexOf(":");
       String key = s.substring(0, index);
       String value = s.substring(index + 1, s.length()); 
-      conf[(key, value); 
       //String value = s.substring(0, s.find(delimiter));
       Serial.println(s);
       Serial.println(key);
@@ -36,7 +38,7 @@ Data[] readLineByLine()
     file.close();
     return conf;
   }
-  return conf;
+  return "";
 }
 
 String readLineByLine(String (*dc)(String))
@@ -119,9 +121,7 @@ void setup() {
 void loop() {
   Serial.println("-------------------------------");
   //String a = reaLineByLine(configDecode);
-  Dictionary d = readLineByLine();
-  
-  Serial.println(d["wifiName"]);
-
+  readLineByLine();
+ 
   delay(10000);
 }
