@@ -134,7 +134,7 @@ void setup() {
 void loop() {
   Serial.println("-------------------------------");
   //String a = reaLineByLine(configDecode);
-  readLineByLine();
- 
+  Map<String, String> conf = readConfig();
+  Serial.println(conf.get("wifiName"));
   delay(10000);
 }
