@@ -1,13 +1,5 @@
 #include "LittleFS.h";
-#include "Map.h";
-
-Map m = Map();
-
-typedef struct {
-  String key;
-  String value;
-} Data;
-
+#include "Map.hpp";
 
 void dataCome(String d) { Serial.println(d);}
 String configDecode(String conf) { return "asd"; }
@@ -41,6 +33,27 @@ String readLineByLine()
   return "";
 }
 
+Map<String, String> readConfig()
+{
+  Map<String, String> conf;
+  
+  File file = LittleFS.open("/config.txt", "r");
+  if(!file){
+    Serial.println("Failed to open file for reading");
+  }
+  else
+  {
+    String result = "";
+    while(file.available()){
+      String s = file.readStringUntil('\n');
+      int index = s.indexOf(":");
+      conf.append(s.substring(0, index), s.substring(index + 1, s.length()));
+    }
+    file.close();
+    return conf;
+  }
+  return conf;
+}
 String readLineByLine(String (*dc)(String))
 {
   File file = LittleFS.open("/config.txt", "r");
