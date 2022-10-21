@@ -13,5 +13,6 @@ void setup() {
 void loop() {
   Serial.println(i++);
   Serial.println(m.get(String(i)));
+  Serial.println(m.getSize());
   delay(2000);
 }

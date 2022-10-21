@@ -2,16 +2,17 @@
 #define MAP_H
 
 template <typename T, typename U> class Map {
+  private:
     T keys[10];
     U values[10];
     int size = 0;
     
-public:
+  public:
     Map();
     void append(T key, U value);
     U remove(T key);
     U get(T key);
-    int size();
+    int getSize() {return size;};
 };
 
 #endif

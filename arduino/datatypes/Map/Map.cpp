@@ -27,7 +27,5 @@ template <typename T, typename U> U Map<T, U>::get(T key)
 template <typename T, typename U> U Map<T, U>::remove(T key)
 { }
 
-template <typename T, typename U> int Map<T, U>::size(){ return size; }
-
 template class Map<String, int>;
 template class Map<String, String>;
