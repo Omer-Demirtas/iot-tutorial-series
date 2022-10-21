@@ -11,6 +11,7 @@ public:
     void append(T key, U value);
     U remove(T key);
     U get(T key);
+    int size();
 };
 
 #endif
