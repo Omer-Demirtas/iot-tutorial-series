@@ -9,6 +9,7 @@ template <typename T, typename U> class Map {
 public:
     Map();
     void append(T key, U value);
+    U remove(T key);
     U get(T key);
 };
 
