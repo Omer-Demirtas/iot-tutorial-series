@@ -50,6 +50,7 @@ void setup() {
   //server.onNotFound(handleNotFound);
  // Route for root / web page
   server.on("/", HTTP_GET, handleOnConnect);
+  server.on("/style.css", HTTP_GET, handleOnStyle);
 
   
   server.begin();
@@ -62,6 +63,10 @@ void loop() {
 
 void handleOnConnect() {
   server.send(200, "text/html", getFile("/index.html")); 
+}
+
+void handleOnStyle() {
+  server.send(200, "text/css", getFile("/style.css")); 
 }
 
 void handleNotFound(){
