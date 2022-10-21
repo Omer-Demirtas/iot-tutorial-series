@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <style>
-        .item {
-            background-color: red;
-            width: 20%;
-            height: 100px;
-        }
+      body {
+        margin: 0;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 46.4px;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+
+      .active {
+        background-color: #04aa6d;
+      }
     </style>
-</head>
-<body>
-    <div style="display: flex; width: 100%;">
-        <div class="item">1</div>
-        <div class="item">2</div>
-        <div class="item">3</div>
-    </div>
-</body>
+  </head>
+  <body>
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#about">Status</a></li>
+    </ul>
+    <div>BODY</div>
+  </body>
 </html>
