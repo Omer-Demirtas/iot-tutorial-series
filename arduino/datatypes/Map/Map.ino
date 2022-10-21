@@ -1,6 +1,7 @@
 #include "Map.hpp";
 
-Map<String, int> m;
+Map<String, int> m(10);
+
 int i = 0;
 void setup() {
    Serial.begin(9600);
