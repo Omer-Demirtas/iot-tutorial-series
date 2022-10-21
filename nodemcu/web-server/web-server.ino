@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include "FileServicce.h";
 
 String ssid = "NAME";
 String password = "PASSWORD";
@@ -7,7 +8,7 @@ String password = "PASSWORD";
 ESP8266WebServer server(80);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   WiFi.begin(ssid, password);
 
@@ -20,8 +21,8 @@ void setup() {
   Serial.println("connected..! ");
   Serial.print("Got IP: ");  Serial.println(WiFi.localIP());
 
-  server.on("/", handle_OnConnect);
-  server.onNotFound(handle_NotFound);
+  server.on("/", handleOnConnect);
+  server.onNotFound(handleNotFound);
 
   server.begin();
   
@@ -31,23 +32,11 @@ void loop() {
   server.handleClient();
 }
 
-void handle_OnConnect() {
-  server.send(200, "text/html", SendHTML()); 
+void handleOnConnect() {
+  server.send(200, "text/html", "Hello"); 
 }
 
-void handle_NotFound(){
+void handleNotFound(){
   server.send(404, "text/plain", "Not found");
 }
  
-String SendHTML(){  
-  String ptr = "<!DOCTYPE html>\n";
-  ptr +="<html>\n";
-  ptr +="<head>\n";
-  ptr +="<title>NodeMCU</title>\n";
-  ptr +="</head>\n";
-  ptr +="<body>\n";
-  ptr +="<h1>Hello World</h1>\n";
-  ptr +="</body>\n";
-  ptr +="</html>\n";
-  return ptr;
-}
