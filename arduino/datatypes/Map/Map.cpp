@@ -3,8 +3,13 @@
 
 
 template <typename T, typename U> Map<T, U>::Map(int mSize) {
-  keys = (T*)malloc(mSize * sizeof(T));
-  values = (U*)malloc(mSize * sizeof(U));
+  T arrKeys[mSize];
+  U arrValues[mSize];
+
+  keys = arrKeys;
+  values = arrValues;
+  //keys = (T*)malloc(mSize * sizeof(T));
+  //values = (U*)malloc(mSize * sizeof(U));
   mapSize=mSize;
 }  
 
@@ -31,6 +36,16 @@ template <typename T, typename U> U Map<T, U>::get(T key)
 
 template <typename T, typename U> U Map<T, U>::remove(T key)
 { }
+
+template <typename T, typename U> void Map<T, U>::print()
+{
+  Serial.println("***************");
+  for(int i = 0; i < size; i++)
+  {
+    Serial.println(keys[i]);
+    Serial.print(values[i]);    
+  }
+}
 
 template class Map<String, int>;
 template class Map<String, String>;
